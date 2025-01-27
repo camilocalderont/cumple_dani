@@ -1,53 +1,42 @@
 <div class="registration-container">
-  <h1>¡Fiesta de Cumpleaños de Dani!</h1>
-  <h2>Confirma tu asistencia</h2>
+    <h1>¡Fiesta de Cumpleaños de Dani!</h1>
+    <h2>Confirma tu asistencia</h2>
 
-  <form *ngIf="!submitted()" (ngSubmit)="onSubmit()">
-    <div class="children-section">
-      <h3>Datos de los niños</h3>
-      <div *ngFor="let child of children(); let i = index" class="child-input">
-        <input 
-          type="text" 
-          [(ngModel)]="child.name" 
-          [name]="'child' + i"
-          placeholder="Nombre del niño/a"
-          required>
-        <button type="button" (click)="removeChild(i)" *ngIf="children().length > 1">
-          Eliminar
-        </button>
-      </div>
-      <button type="button" (click)="addChild()">Agregar otro niño</button>
+    <form *ngIf="!submitted()" (ngSubmit)="onSubmit()">
+        <div class="children-section">
+            <h3>Datos de los niños</h3>
+            <div *ngFor="let child of children(); let i = index" class="input-group">
+                <input type="text" [(ngModel)]="child.name" [name]="'child' + i" placeholder="Nombre del niño/a"
+                    required />
+                <button type="button" (click)="removeChild(i)" *ngIf="children().length > 1" class="remove-btn">
+                    Eliminar
+                </button>
+            </div>
+            <button type="button" (click)="addChild()" class="add-btn">Agregar otro niño</button>
+        </div>
+
+        <div class="adults-section">
+            <h3>Acompañantes adultos</h3>
+            <input type="number" [ngModel]="adultCount()" (ngModelChange)="updateAdultCount($event)" name="adultCount"
+                placeholder="Cantidad" min="1" required />
+        </div>
+
+        <div class="confirmation-section">
+            <label class="checkbox-group">
+                <input type="checkbox" [ngModel]="confirmed()" (ngModelChange)="updateConfirmed($event)"
+                    name="confirmed" />
+                Confirmo mi asistencia
+            </label>
+        </div>
+
+        <p class="error" *ngIf="error()">{{ error() }}</p>
+
+        <button type="submit" class="submit-btn">Guardar</button>
+    </form>
+
+    <div class="success-message" *ngIf="submitted()">
+        <h3>¡Ya ha realizado el registro!</h3>
+        <img src="assets/invitacion.jpg" alt="Invitación" class="invitation-image" />
+        <p>Te esperamos a partir de las 2:30pm, gracias por confirmar.</p>
     </div>
-
-    <div class="adults-section">
-      <h3>Acompañantes adultos</h3>
-      <input 
-        type="number" 
-        [ngModel]="adultCount()"
-        (ngModelChange)="updateAdultCount($event)"
-        name="adultCount"
-        min="1"
-        required>
-    </div>
-
-    <div class="confirmation-section">
-      <label>
-        <input 
-          type="checkbox" 
-          [ngModel]="confirmed()"
-          (ngModelChange)="updateConfirmed($event)"
-          name="confirmed">
-        Confirmo mi asistencia
-      </label>
-    </div>
-
-    <p class="error" *ngIf="error()">{{ error() }}</p>
-
-    <button type="submit">Guardar</button>
-  </form>
-
-  <div class="success-message" *ngIf="submitted()">
-    <h3>¡Ya ha realizado el registro!</h3>
-    <p>Te esperamos a partir de las 2:30pm, gracias por confirmar.</p>
-  </div>
 </div>
