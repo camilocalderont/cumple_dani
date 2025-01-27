@@ -5,7 +5,12 @@
     <title>Cumple 5 Dani</title>
     <meta charset="UTF-8">
     <base href="/cumple_dani/">
-    <script src="assets/env.js"></script>
+    <script>
+        window.env = {
+            VITE_SUPABASE_URL: '#{VITE_SUPABASE_URL}#',
+            VITE_SUPABASE_ANON_KEY: '#{VITE_SUPABASE_ANON_KEY}#'
+        };
+    </script>
 <style>body{margin:0;padding:2rem;font-family:Arial,sans-serif;background-color:#fff0f5;min-height:100vh}*{box-sizing:border-box}</style><link rel="stylesheet" href="styles-RUG73JD4.css" media="print" onload="this.media='all'"><noscript><link rel="stylesheet" href="styles-RUG73JD4.css"></noscript></head>
 
 <body>
