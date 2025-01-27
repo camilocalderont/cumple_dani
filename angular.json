@@ -33,7 +33,8 @@
             "polyfills": ["zone.js"],
             "scripts": [],
             "styles": ["src/global_styles.css"],
-            "tsConfig": "tsconfig.app.json"
+            "tsConfig": "tsconfig.app.json",
+            "baseHref": "/cumple_dani/"
           }
         },
         "serve": {
@@ -47,6 +48,9 @@
             }
           },
           "defaultConfiguration": "development"
+        },
+        "deploy": {
+          "builder": "angular-cli-ghpages:deploy"
         }
       },
       "prefix": "app",
