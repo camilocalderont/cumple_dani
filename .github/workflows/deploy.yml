@@ -11,12 +11,12 @@ jobs:
         with:
           node-version: '20'
       - run: |
-          npm install
-          npm run build
-          mkdir -p dist/demo/assets
-          cp src/assets/env.js dist/demo/assets/
-          sed -i 's|#{VITE_SUPABASE_URL}#|'${{ secrets.VITE_SUPABASE_URL }}'|g' dist/demo/assets/env.js
-          sed -i 's|#{VITE_SUPABASE_ANON_KEY}#|'${{ secrets.VITE_SUPABASE_ANON_KEY }}'|g' dist/demo/assets/env.js
+            npm install
+            npm run build
+            mkdir -p dist/demo/assets/
+            cp -f src/assets/env.js dist/demo/assets/
+            sed -i 's|#{VITE_SUPABASE_URL}#|'${{ secrets.VITE_SUPABASE_URL }}'|g' dist/demo/assets/env.js
+            sed -i 's|#{VITE_SUPABASE_ANON_KEY}#|'${{ secrets.VITE_SUPABASE_ANON_KEY }}'|g' dist/demo/assets/env.js
       - uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
