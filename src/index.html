@@ -4,8 +4,13 @@
 <head>
     <title>Cumple 5 Dani</title>
     <meta charset="UTF-8" />
-    <base href="/cumple_dani/">
-    <script src="assets/env.js"></script>
+    <base href="/">
+    <script>
+        window.env = {
+            VITE_SUPABASE_URL: '#{VITE_SUPABASE_URL}#',
+            VITE_SUPABASE_ANON_KEY: '#{VITE_SUPABASE_ANON_KEY}#'
+        };
+    </script>
 </head>
 
 <body>
