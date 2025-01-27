@@ -11,10 +11,12 @@ jobs:
         with:
           node-version: '20'
       - run: |
-          npm install
-          npm run build
-          sed -i 's|#{VITE_SUPABASE_URL}#|'${{ secrets.VITE_SUPABASE_URL }}'|g' dist/demo/index.html
-          sed -i 's|#{VITE_SUPABASE_ANON_KEY}#|'${{ secrets.VITE_SUPABASE_ANON_KEY }}'|g' dist/demo/index.html
+            npm install
+            # Reemplazar variables antes del build
+            sed -i "s|#{VITE_SUPABASE_URL}#|${{ secrets.VITE_SUPABASE_URL }}|g" src/index.html
+            sed -i "s|#{VITE_SUPABASE_ANON_KEY}#|${{ secrets.VITE_SUPABASE_ANON_KEY }}|g" src/index.html
+            # Luego hacer el build
+            npm run build
       - uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
